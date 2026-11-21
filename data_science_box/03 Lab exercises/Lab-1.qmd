@@ -16,8 +16,19 @@ library(datasauRus)
 
 ### Exercise 1
 
-Remove this text, and add your answer for Exercise 1 here.
+Based on the `datasaurus_dozen` help, there are 1846 rows and 3 coulumns in the dataset. The 3 variables are:
 
+- dataset
+- x
+- y
+
+```{r}
+datasaurus_dozen %>%
+  count(dataset) %>%
+  print(13)
+```
+
+  
 ### Exercise 2
 
 The answers for this Exercise are given for you below.
