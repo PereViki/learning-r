@@ -1,0 +1,28 @@
+---
+title: "Peguins"
+subtitle: "Unit 1 - Lesson 2"
+author: "Viktória Pere"
+format:
+  html:
+    toc: true
+editor: source
+date: "2026-11-20"
+---
+[YouTube lesson](https://www.youtube.com/watch?v=mTAZLFcpnLI&list=PLNUVZZ6hfXX1tyUykCWShOKZdIB0TIhtM&index=6) 
+
+## Introduction
+
+```{r packages, message=FALSE, warning=FALSE}
+library(palmerpenguins) 
+```
+
+```{r summary}
+summary(penguins)
+```
+
+```{r}
+penguins$flipper_length_mm
+mean(penguins$flipper_length_mm, na.rm = TRUE)
+```
+
+
