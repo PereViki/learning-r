@@ -17,33 +17,43 @@ library(openintro)
 
 ### Exercise 1
 
-There are \_\_\_ pets in the dataset.
+According to the data dictionary, there are 52,519 pets in the dataset.
 
 ### Exercise 2
 
-Remove this text, and add your answer for Exercise 2 here.
+According to the data dictionary, there are 7 variables in the dataset.
 
 ### Exercise 3
 
-Remove this text, and add your answer for Exercise 3 here.
+The 3 most common pet names are Lucy, Charlie and Luna.
 
-```{r most-common-names}
-seattlepets %>%
-  count(animal_name, sort = TRUE)
+```{r popular-pet-names}
+named_pets <- seattlepets %>% 
+  filter(!is.na(animal_name))
+
+named_pets %>%
+  count(animal_name, sort = TRUE, name = "pet_number") %>%
+  slice_max(pet_number, n=3)
 ```
 
 ### Exercise 4
 
-Remove this text, and add your answer for Exercise 4 here.
+The top 5 cat and dog names are as follows:
 
 ```{r most-common-cat-dog-names}
-# remove this comment and add the code for Exercise 4 here
+named_pets <- seattlepets %>% 
+  filter(!is.na(animal_name))
+
+named_pets %>%
+   group_by(species) %>%
+   count(animal_name, sort = TRUE, name = "pet_n") %>%
+   slice_max(pet_n, n=5)
 ```
 
 ### Exercise 5
 
-Remove this text, and add your answer for Exercise 5 here.
+The animal names that are below the line are more common for cat than dogs: Oliver & Lili.
 
 ### Exercise 6
 
-Remove this text, and add your answer for Exercise 6 here.
+The relationship between the two variables (proportion of cats with a given name and proportion of dogs with a given name) is positive. In context of the data it means, that if a popularity of a cat name increases, the popularity of the dog name increases as well.
