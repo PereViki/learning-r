@@ -1,0 +1,133 @@
+---
+title: "Introduction to Modern Statistics"
+subtitle: "Chapter 1 exercises"
+author: "PereViki"
+dat: "2026-11-23"
+format: html
+toc: true
+---
+
+```{r}
+#| label: load-packages
+#| message: FALSE
+
+library(tidyverse)
+library(openintro)
+library(cherryblossom)
+library(airports)
+library(unvotes)
+library(ukbabynames)
+library(tidytuesdayR)
+```
+
+**Exercises** can be found [here](https://openintro-ims.netlify.app/data-hello.html#sec-chp1-exercises).  
+**Solutions** can be found [here](https://openintro-ims.netlify.app/exercise-solutions#sec-exercise-solutions-01).
+
+## Exercise 1
+
+**Marvel Cinematic Universe films** (`mcu_films` dataset form the `openintro` R package). The data frame below contains information on Marvel Cinematic Universe films through the Infinity saga (a movie storyline spanning from Ironman in 2008 to Endgame in 2019). Box office totals are given in millions of US Dollars. How many observations and how many variables does this data frame have?
+
+```{r}
+#| label: ex1
+
+glimpse(mcu_films)
+nrow(mcu_films)
+ncol(mcu_films)
+```
+
+#### Answer
+
+The `mcu_films` dataset has **`r nrow(mcu_films)` observations** and **`r ncol(mcu_films)` variables**.
+
+## Exercise 2
+
+Cherry Blossom Run (`run17` dataset form the `cherryblossom` R package). The data frame below contains information on runners in the 2017 Cherry Blossom Run, which is an annual road race that takes place in Washington, DC. Most runners participate in a 10-mile run while a smaller fraction take part in a 5k run or walk. How many observations and how many variables does this data frame have?
+
+#### Answer
+
+The `run17` dataset has **`r nrow(run17)` observations** and **`r ncol(run17)` variables**.
+
+## Exercise 3
+
+Air pollution and birth outcomes, study components. Researchers collected data to examine the relationship between air pollutants and preterm births in Southern California. During the study, air pollution levels were measured by air quality monitoring stations. Specifically, levels of carbon monoxide were recorded in parts per million, nitrogen dioxide and ozone in parts per hundred million, and inhalable particulate matter ($PM_{10}$) in $μg/m^3$.Length of gestation data were collected on 143,196 births between the years 1989 and 1993, and air pollution exposure during gestation was calculated for each birth. The analysis suggested that increased ambient PM
+ and, to a lesser degree, CO concentrations may be associated with the occurrence of preterm births. ([Ritz et al. 2000](https://www.jstor.org/stable/3703990))
+ 
+1. Identify the main research question of the study.
+2. Who are the subjects in this study, and how many are included?
+3. What are the variables in the study? Identify each variable as numerical or categorical. If numerical, state whether the variable is discrete or continuous. If categorical, state whether the variable is ordinal.
+
+#### Answer
+
+1. Does air pollution effect the number of preterm child births? (solution: Is there an association between air pollution exposure and preterm births?)
+2. 143,196 Southern Californian babies born between 1989 and 1993.
+3. CO, NO~2~, O~3~, PM~10~ are continous numberical variables. Gestation period is probably discrete numerical (if weeks or days).
+
+## Exercise 4
+
+#### Answer
+
+## Exercise 5
+
+#### Answer
+
+## Exercise 6
+
+#### Answer
+
+## Exercise 7
+
+#### Answer
+
+## Exercise 8
+
+#### Answer
+
+## Exercise 9
+
+#### Answer
+
+## Exercise 10
+
+#### Answer
+
+## Exercise 11
+
+#### Answer
+
+## Exercise 12
+
+#### Answer
+
+## Exercise 13
+
+#### Answer
+
+## Exercise 14
+
+#### Answer
+
+## Exercise 15
+
+#### Answer
+
+## Exercise 16
+
+#### Answer
+
+## Exercise 17
+
+#### Answer
+
+## Exercise 18
+
+#### Answer
+
+## Exercise 19
+
+#### Answer
+
+## Exercise 20
+
+#### Answer
+
+

@@ -1,0 +1,56 @@
+---
+title: "Starwars"
+subtitle:  "Unit 2 - Lesson 2"
+author: "PereViki"
+format: html
+---
+
+```{r}
+#| label: load-packages
+#| warning: FALSE
+
+library(tidyverse)
+library(Tmisc)
+```
+
+## Starwars EDA
+
+```{r}
+#| label: glimpse
+
+glimpse(starwars)
+nrow(starwars)
+ncol(starwars)
+dim(starwars)
+```
+
+```{r}
+#| label: data-visualization
+#| warning: FALSE
+
+ggplot(starwars, aes(x = height, y = mass)) +
+  geom_point() +
+  labs(title = "Mass vs. height of Starwars characters", x = "Height (cm)", y = "Weight (kg)")
+```
+
+## Anscombe's quartet EDA
+
+```{r}
+quartet
+
+quartet %>%
+  group_by(set) %>%
+  summarise(
+    mean_x = mean(x),
+    mean_y = mean(y),
+    sd_x = sd(x),
+    sd_y = sd(y),
+    r = cor(x, y)
+  )
+
+ggplot(quartet, aes(x = x, y = y)) +
+  geom_point() +
+  facet_grid(. ~set) +
+  labs(title = "Anscombe's quartet")
+```
+
