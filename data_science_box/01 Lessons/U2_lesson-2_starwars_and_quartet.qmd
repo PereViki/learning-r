@@ -1,9 +1,15 @@
 ---
 title: "Starwars"
-subtitle:  "Unit 2 - Lesson 2"
+subtitle:  "Unit 2 - Lesson 2 - Data and visualisation"
 author: "PereViki"
-format: html
+date: 2026.11.23
+format: 
+  html:
+    toc: true
+  typst: default
 ---
+
+[YouTube lesson](https://www.youtube.com/watch?v=FddF4b_GuTI&list=PLNUVZZ6hfXX1tyUykCWShOKZdIB0TIhtM&index=10)
 
 ```{r}
 #| label: load-packages
