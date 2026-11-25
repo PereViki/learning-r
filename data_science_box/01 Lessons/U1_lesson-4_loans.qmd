@@ -1,0 +1,226 @@
+---
+title: "Loans"
+subtitle: "Unit 2 - Lesson 4 - Visualizing numerical data"
+author: "PereViki"
+date: "2026.11.25"
+format: html
+---
+
+```{r}
+#| label: load-packages
+#| message: FALSE
+
+library(tidyverse)
+library(openintro)
+library(hexbin)
+```
+
+The data comes from the `openintro` package. The dataset is called `loans_full_schema`.
+
+```{r}
+#| label: glimpse
+
+glimpse(loans_full_schema)
+```
+
+There are `r nrow(loans_full_schema)` observations in the dataset and `r ncol(loans_full_schema)` variables. We are only interested in 8 of those variables.
+
+```{r}
+#| label: select fields
+
+loans <- loans_full_schema %>%
+  select(loan_amount, interest_rate, term, grade, state, annual_income, homeownership, debt_to_income)
+glimpse(loans)
+```
+
+## Histograms
+
+```{r}
+#| label: histogram-1
+
+ggplot(loans, aes(x = loan_amount)) +
+  geom_histogram() +
+  labs(title = "Distribution of the loan amount", subtitle = "Binwidth: auto")
+```
+
+```{r}
+#| label: histogram-2
+
+ggplot(loans, aes(x = loan_amount)) +
+  geom_histogram(binwidth = 5000) +
+  labs(title = "Distribution of the loan amount", subtitle = "Binwidth: 5,000")
+
+ggplot(loans, aes(x = loan_amount)) +
+  geom_histogram(binwidth = 10000) +
+  labs(title = "Distribution of the loan amount", subtitle = "Binwidth: 10,000")
+
+ggplot(loans, aes(x = loan_amount)) +
+  geom_histogram(binwidth = 15000) +
+  labs(title = "Distribution of the loan amount", subtitle = "Binwidth: 15,000")
+
+ggplot(loans, aes(x = loan_amount)) +
+  geom_histogram(binwidth = 20000) +
+  labs(title = "Distribution of the loan amount", subtitle = "Binwidth: 20,000")
+```
+
+### Final plot with labels
+
+```{r}
+#| label: final-histogram
+
+ggplot(loans, aes(x = loan_amount, fill = homeownership)) +
+  geom_histogram(binwidth = 5000, alpha = 0.5) +
+  labs(title = "Amounts of lending club loans", 
+       subtitle = "Binwidth: 5,000",
+       caption = "Source: openintro R ackage",
+       dictionary = c(
+         loan_amount = "Loan amount ($)",
+         count = "Frequency",
+         homeownership = "Homeownership"))
+
+```
+
+### Faceted histogram
+
+```{r}
+#| label: faceted-histogram
+
+ggplot(loans, aes(x = loan_amount, fill = homeownership)) +
+  geom_histogram(binwidth = 5000) +
+  labs(title = "Amounts of lending club loans", 
+       subtitle = "Binwidth: 5,000",
+       caption = "Source: openintro R ackage",
+       dictionary = c(
+         loan_amount = "Loan amount ($)",
+         count = "Frequency",
+         homeownership = "Homeownership")) +
+  facet_wrap(~ homeownership, nrow = 3) + 
+  guides(fill = FALSE)
+
+```
+
+### Density plots
+
+```{r}
+#| label: density-plot
+
+ggplot(loans, aes(x = loan_amount)) +
+  geom_density() +
+  labs(title = "Amounts of lending club loans", 
+       subtitle = "Smoothness: auto",
+       caption = "Source: openintro R ackage",
+       dictionary = c(
+         loan_amount = "Loan amount ($)",
+         density = "Density",
+         homeownership = "Homeownership"))
+
+```
+
+```{r}
+#| label: density-plot-2
+
+ggplot(loans, aes(x = loan_amount)) +
+  geom_density(adjust = 2) +
+  labs(title = "Amounts of lending club loans", 
+       subtitle = "Smoothness: 2",
+       caption = "Source: openintro R ackage",
+       dictionary = c(
+         loan_amount = "Loan amount ($)",
+         density = "Density",
+         homeownership = "Homeownership"))
+
+```
+
+```{r}
+#| label: density-plot-3
+
+ggplot(loans, aes(x = loan_amount, fill = homeownership)) +
+  geom_density(adjust = 2, alpha = 0.5) +
+  labs(title = "Amounts of lending club loans", 
+       subtitle = "Smoothness: 2",
+       caption = "Source: openintro R ackage",
+       dictionary = c(
+         loan_amount = "Loan amount ($)",
+         density = "Density",
+         homeownership = "Homeownership"))
+
+```
+
+## Box plots
+
+```{r}
+#| label: box-plot-1
+
+ggplot(loans, aes(x = annual_income)) +
+  geom_boxplot() +
+  labs(title = "Boxplot of annual income", 
+       # subtitle = "Subtitle",
+       caption = "Source: openintro R ackage",
+       dictionary = c(
+         annual_income = "Annual income ($)")) +
+  theme(
+    axis.ticks.y = element_blank(),
+    axis.text.y = element_blank()
+  )
+
+```
+
+```{r}
+#| label: box-plot-2
+
+ggplot(loans, aes(x = interest_rate)) +
+  geom_boxplot() +
+  labs(title = "Boxplot of interest rates", 
+       # subtitle = "Subtitle",
+       caption = "Source: openintro R ackage",
+       dictionary = c(
+         interest_rate = "Interest rate")) +
+  theme(
+    axis.ticks.y = element_blank(),
+    axis.text.y = element_blank()
+  )
+
+```
+
+```{r}
+#| label: box-plot-3
+
+ggplot(loans, aes(x = interest_rate, y = grade)) +
+  geom_boxplot() +
+  labs(title = "Boxplot of interest rates", 
+      subtitle = "By grade of loan",
+       caption = "Source: openintro R ackage",
+       dictionary = c(
+         interest_rate = "Interest rate (%)",
+         grade = "Grade of loan")) 
+```
+
+## Instead of a scatter plots
+
+```{r}
+#| label: scatter-plot
+
+ggplot(loans, aes(x = debt_to_income, y = interest_rate)) +
+  geom_point() +
+  labs(title = "Scatter plot of interest rates and debt to income ratio", 
+      #subtitle = "---",
+       caption = "Source: openintro R ackage",
+       dictionary = c(
+         interest_rate = "Interest rate (%)",
+         debt_to_income = "Debt to income")) 
+```
+
+```{r}
+#| label: hex-plot
+
+
+ggplot(loans, aes(x = debt_to_income, y = interest_rate)) +
+  geom_hex()
+```
+
+```{r}
+#| label: hex-plot-filtered
+
+ggplot(loans %>% filter(debt_to_income < 100), aes(x = debt_to_income, y = interest_rate)) +
+  geom_hex()
+```

@@ -1,6 +1,6 @@
 ---
 title: "Starwars"
-subtitle:  "Unit 2 - Lesson 2 - Data and visualisation"
+subtitle: "Unit 2 - Lesson 2 - Data and visualisation"
 author: "PereViki"
 date: 2026.11.23
 format: 
